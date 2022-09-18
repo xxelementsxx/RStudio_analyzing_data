@@ -1,0 +1,492 @@
+
+
+###############      Untersuchung auf Lernerfolg als Differenz der korrekten Beantwortungen (Pre-Posttest)
+##############                  in der Umfrage virtuell Unterrichtseinheit
+
+
+
+# Datensatz T1LernerfolgDU_data_virt_lesson_v3 in R laden
+
+#load dataset for all variables virtuelle Lerneinheit
+T1LernerfolgDU_data_virt_lesson_v3 <- read_excel("C:/Users/Melissa/Documents/MAGame_and_analyzing/ma r evaluation-20220918T104342Z-001/ma r evaluation/Evaluation/digitalLesson/R/T1LernerfolgDU_data_virt_lesson_v3.xlsx")
+
+#load split dataset
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson <- read_excel("C:/Users/Melissa/Documents/MAGame_and_analyzing/ma r evaluation-20220918T104342Z-001/ma r evaluation/Evaluation/digitalLesson/R/switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson.xlsx")
+
+
+#import float pkg
+install.packages("float")
+
+#%%Ziel1:
+#H1: Die Probanten haben einen Lernerfolg erziel (in der virtuellen Unterrichtsstunde -- beim bespielen der Lernsimualtion)
+#H0: verwirft H1 und nimmt Alternativhypothese an, dass die Probanten keinen Lernerfolg erzielt haben (0,05%)
+
+#001 Normalverteilung f?r jeder Variable pr?fen Q1-Q18
+###Pr?fen auf Normalverteilung: qqplot und qqline
+##Normalverteilung: Gilt als Bedingung des nachfolgend anzuwendenden statistischen Verfahrens (normalv. -> parametrisch; nicht normalv. -> nicht parametrisch)
+##Pre-Test: kein Vorwissen bei Probanten gegeben
+##+ Histogramm
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q1)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q1)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q1) # nicht zielf?hrend, da keine Antworten
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q2)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q2)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q2)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q3)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q3)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q3)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q4)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q4)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q4)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q5)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q5)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q5)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q6)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q6)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q6)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q7)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q7)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q7)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q8)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q8)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q8)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q9)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q9)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q9)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q10)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q10)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q10)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q11)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q11)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q11)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q12)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q12)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q12)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q13)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q13)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q13)
+
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q14)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q14)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q14)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q15)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q15)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q15)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q16)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q16)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q16)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q17)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q17)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q17)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$Q18)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$Q18)
+hist(T1LernerfolgDU_data_virt_lesson_v3$Q18)
+
+#Result1: Fragegruppe Q: normalverteilt, weil kein Vorwissen vorhanden, d.h., dass die numerischen Werte jeder Antwort = 0 ist.
+
+
+#002 Normalverteilung f?r jeder Variable pr?fen W1-W18
+#Result2: Eine Pr?fung auf Normalverteidlung der Variablen W1-W18 ist aus folgendem Grund nicht m?glich: 
+#weil der Variablentyp der Fragegruppe W nominaler Natur ist
+#wenn keine Normalverteilung, dann auch kein Histogram m?glich zum anzeigen
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W1)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W1)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W2)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W2)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W3)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W3)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W4)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W4)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W5)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W5)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W6)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W6)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W7)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W7)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W8)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W8)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W9)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W9)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W10)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W10)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W11)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W11)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W12)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W12)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W13)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W13)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W14)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W14)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W15)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W15)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W16)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W16)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W17)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W17)
+
+qqnorm(T1LernerfolgDU_data_virt_lesson_v3$W18)
+qqline(T1LernerfolgDU_data_virt_lesson_v3$W18)
+#Result W1-W18: Fragen die nicht korrekt beantwortet waren, sind gleich 0 und f?hren deshalb eine normalverteilung jener darf,
+#aber aufgrund des Einbezugs der korrekten Antworten existiert mindestens eine Variable die nicht normalverteilt ist und nachfolgend eine nicht parametrische Methode bedingt.
+
+#003 Untersuchung auf Korrelationen zwischen allen Kombinationsm?glichkeiten der zu interessierenden Variablen mittels der Spearmann-Methode
+###Untersuchen auf Korrelationen###
+#1) Kendalls Tau-Methode, als statistisches Verfahren ist nicht valide, weil vorausgesetzt wird, dass die Variablen vom metrischen Variablentyp sind, d.h. diese k?nnen auf einer metrischen Skala abgebildet werden.
+#2) Die Variablentypen des Lernerfolgs sind nominal.
+#3) Nominalit?t gilt als Voraussetzung f?r die Chi^2-Methode als statistisches Verfahren -> Entscheidung f?r Chi^2
+
+##############                  CHISQ                  #############
+
+
+#(1) Generierung Kreuztabelle f?r Cramers V: aus den Fragegruppen Q: Vorwissen und W:Lernerfolg
+#table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018)
+#(1a) Hinweis: F?r eine Kreuztabelle mussen alle Zeichen der zu kreuzenden Variablen, die gleich Anzahl/L?nge haben
+
+#Das Effektst?rkema?: Cramers V gibt an, wie korreliert wird, denn das Effektst?rkema? ist eine Form der Korrelation
+#Lit. Mary L. McHugh: The Chi-square test of independence, Juni
+##    2013, URL: https://www.ncbi.nlm.nih.gov/pmc/articles/
+##    PMC3900058/, abgerufen am 16.02.2020.
+
+# Voraussetzung zur Anwendung der Chisq-Methode:
+##, "dass die Zellen nicht zu schwach besetzt sind, dies kann u.a.
+##  durch die erwarteten H?ufigkeiten abgekl?rt werden.
+##  -> Erwarteten H?ufigkeiten sollten nicht in "[...] max. 20% der Zellen, weniger als 5 erwartete Beobachtungen [...] haben [...]",.
+##  denn ansonsten, kann nicht validiert werden, dass der Chisq.test g?ltigkeit besitzt
+
+
+#1. Generierung einer Kreuztabelle
+table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018)
+#????????????????????????
+splitData_nominalXnominal_as_crosstable <- table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018)
+# splitData_nominalXnominal_as_crosstable = Kreuztabelle vom split Datensatz f?r die Kombinationen aller m?glichen Antworten, die durch die Probanden erhalten wurden
+splitData_nominalXnominal_as_crosstable
+
+#2.B): Bedingung durch erwartete Beobachtungen best?tigen, bzw. widerlegen
+#2.A): install lsr -> than use is
+
+#Variable f?r den chisq.test (Kreuztabelle(Alle m?gl. Kombinationen aus den Antworten KQ und KW))
+
+LernerfolgVirtLesson
+#LernerfolgVirtLesson <_ chisq.test(splitData_nominalXnominal_as_crosstable(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson))
+#LernerfolgVirtLesson$expected
+
+#Ich habe nicht eine Variable als Kreuztabelle deklarariert. Habe doch aber die Kreuztabelle nicht eingestzt, wo nachfolgend "table" steht
+LernerfolgVirtLesson <- 
+  
+  chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson))
+LernerfolgVirtLesson$expected
+
+##################### CHISQ       #################################
+
+#load split dataset
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson <- read_excel("D:/MA/Evaluation/digitalLesson/R/switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson.xlsx")
+
+
+#import float pkg
+install.packages("float")
+
+
+#A) load the package f?r Anwendung CramersV
+install.packages("lsr")
+
+#A) use the package f?r Anwendung CramersV
+library(lsr)
+#-> cramers v von kreuztabelle
+
+#chisq.test
+#-> chisq.test(kreuztabelle(datensatz))
+#1. Kreutabelle als Variable
+table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018)
+splitData_nominalXnominal_as_crosstable <- table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018)
+
+#1.1 Balkendiagramm, visualisiert m?glichen Zsh. wenn nicht alle gleichverteilt sind
+barplot(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018), beside = T, ylab = "KQ001", xlab = "KW001", col = c("lightblue", "chocolate4", "chocolate3", "chocolate2", "chocolate1", "chocolate", "blue4", "blue3", "blue2", "blue1", "blue", "chocolate3", "azure3", "azure2", "azure1", "azure", "coral1", "coral", names=c("KQ001, KQ002, KQ003, KQ004,KQ005, KQ006, KQ007, KQ008, KQ009, KQ0010, KQ0011, KQ0012, KQ013, KQ014, KQ015, KQ016, KQ017, KQ018,")))
+#Error in barplot.default(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001,  : 
+#'height' muss ein Vektor oder eine Matrix sein
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018))
+
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017))
+barplot(as.matrix(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018))
+
+#In apply(height, 2L, cumsum) : NAs introduced by coercion
+#https://github.com/SurajGupta/r-source/blob/master/src/library/base/R/warnings.R
+warnings <- function(...)
+{
+  if(!exists("last.warning", envir=baseenv())) return()
+  last.warning <- get("last.warning", envir = baseenv())
+  if(!(length(last.warning))) return()
+  structure(last.warning, dots = list(...), class = "warnings")
+}
+
+`[.warnings` <- function(x, ...)
+  structure(NextMethod("["), class = "warnings")
+
+c.warnings <- function (..., recursive = FALSE)
+  structure(NextMethod("c"), class = "warnings")
+
+unique.warnings <- function(x, incomparables = FALSE, ...)
+  x[!duplicated(x, incomparables, ...)]
+
+print.warnings <- function(x, ...)
+{
+  if(n <- length(x)) {
+    cat(ngettext(n, "Warning message:\n", "Warning messages:\n"))
+    msgs <- names(x)
+    for(i in seq_len(n)) {
+      ind <- if(n == 1L) "" else paste0(i, ": ")
+      out <- if(length(x[[i]])) {
+        ## deparse can overshoot cutoff
+        temp <- deparse(x[[i]], width.cutoff = 50L, nlines = 2L)
+        ## Put on one line if narrow enough.
+        sm <- strsplit(msgs[i], "\n")[[1L]]
+        nl <- if(nchar(ind, "w") + nchar(temp[1L], "w") +
+                 nchar(sm[1L], "w") <= 75L)
+          " " else "\n  "
+        paste(ind, "In ",
+              temp[1L], if(length(temp) > 1L) " ...",
+              " :", nl, msgs[i], sep = "")
+      } else paste0(ind, msgs[i])
+      do.call("cat", c(list(out), attr(x, "dots"), fill=TRUE))
+    }
+  }
+  invisible(x)
+}
+
+##' @title Warn about extraneous arguments in the "..."	 (of its caller).
+##' @author Martin Maechler, June 2012, May 2014
+##' @param ...
+##' @param which.call passed to sys.call().  A caller may use -2 if the message should
+##' mention *its* caller
+##' @param allowed not yet implemented: character vector of *named* elements in '...'
+##' which are \dQuote{allowed} and hence not warned about
+chkDots <- function(..., which.call = -1, allowed = character(0)) {
+  if(nx <- length(list(...))) ## <- or  if(missing(...)) ?
+    warning(sprintf(ngettext(nx,
+                             "In %s :\n extra argument %s will be disregarded",
+                             "In %s :\n extra arguments %s will be disregarded"),
+                    paste(deparse(sys.call(which.call), control=c()), collapse="\n"),
+                    ## sub(")$", '', sub("^list\\(", '', deparse(list(...), control=c())))
+                    paste(sQuote(names(list(...))), collapse = ", ")),
+            call. = FALSE, domain=NA)
+}
+
+#Result: Boxplot kann m?glicherweise dargestellt werden, wenn korrekt deklariert
+
+
+#Error in chisq.test(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001,  : 
+#unzul?ssiges 'x'
+#-> https://stats.stackexchange.com/questions/81483/warning-in-r-chi-squared-approximation-may-be-incorrect
+chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson, simulate.p.value = TRUE)
+
+#Error in sum(x) : invalid 'type' (character) of argument
+sum(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson)
+
+#->That error is coming from sum(), because you are attempting to sum the character elements in the color column.
+#PROBLEM IST DER VARIABLENTYP KQ0001-KQ0018; SEITEN DER SPALTEN TAUSCHEN ODER ANDEREN VARIABLENTYPEN FINDEN
+
+#load package: https://stackoverflow.com/questions/35120252/getting-invalid-type-character-of-argument-error-with-aggregate
+#library(dplyr)
+#csv %>% group_by(color) %>% summarise_each(funs(sum))
+
+#L?SUNG JEDE KOMBINANTION AUS: KQ0001-KQ00018 mit KW0001-KW0018 kreuzen
+#1.split_data set: spalten vertauscht und standard als Datentyp eingestellt
+
+
+# 2. Befehl + als Var deklarieren: splitData_nominalXnominal_as_crosstable = Kreuztabelle vom split Datensatz f?r die Kombinationen aller m?glichen Antworten, die durch die Probanden erhalten wurden
+splitData_nominalXnominal_as_crosstable
+
+#3. chisq.test + erwartete Beobachtungen m?ssen in 20% der Zellen > 5 sein oder mehr: sonst nicht valide
+chisq.test(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018))
+LernerfolgVirtLesson <- chisq.test(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson)))
+
+#Erwartung
+LernerfolgVirtLesson$expected
+
+#show var
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017
+
+
+
+#That error is coming from sum(), because you are attempting to sum the character elements in the color column.
+
+
+##################### CHISQ pro Variablenpaar auf der Kreuztabelle berechnen
+table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001)
+chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001)
+
+#Error in chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001,  : 
+#'x' und 'y' m?ssen mindestens 2 Stufen haben
+
+#>contable <- array(c(42, 0,0,0), dim=c(2,2))
+#> chisq.test(contable)
+
+
+twolevels <- array(c(42, 0,0,0), dim=c(2,2))
+chisq.test((twolevels))
+
+morelevels <- array(c(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson, 0,0,0), dim=c(2,2))
+
+chisq.test(as.vector(morelevels), p = rep(0.25, 4))
+
+
+
+
+#############fishers extract test anstatt chisq
+#McK <- matrix(c(43,17,2,7),2,
+#                dimnames=list(c("polymorph","fixed"),
+#                              c("synon","replace")))
+#McK
+#synon replace
+#polymorph 43 2
+#fixed 17 7
+#chisq.test(McK)
+
+
+###SOLUTION.fishersextraction-chsq.test: weil kann mehr als 2-Stufen anerkennen
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson <- matrix(c(43,17,2,7),2,
+                                                                    dimnames=list(c("polymorph","fixed"),
+                                                                                  c("synon","replace")))
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson
+chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson)
+#Result: Hypothese Lernerfolg virtueller Unterricht: 
+
+#Effektst?rke Cramers V
+
+# load the package f?r Anwendung CramersV
+install.packages("lsr")
+# use the package f?r Anwendung CramersV
+library(lsr)
+#-> cramers v von kreuztabelle
+#Kreuztabelle zur Berechnung des Cramers V
+table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson)
+#Cramers V resultat Effektsst?rke zwischen den Variablen
+cramersV(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson))
+
+#Erwartung doesn`t work for atomic vectors`
+switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$expected
+
+
+
+##########notizen___________________________
+# load the package f?r Anwendung CramersV
+install.packages("lsr")
+# use the package f?r Anwendung CramersV
+library(lsr)
+#-> cramers v von kreuztabelle
+#cramersV(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ0018, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0001, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0002, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0003, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0004, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0005, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0006, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0007, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0008, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0009, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0010, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0011, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0012, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0013, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0014, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0015, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0016, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0017, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW0018))
+
+
+#Alle M?glickeiten f?r Kreuztabelle definieren;
+#chisq.test(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KQ1, switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson$KW1) # Bedingung sind min. 2 Stufen
+
+#Bestimmung Korrelationkoeffizient mit Kendalls Tau Methode
+cor.test(data_virt_lesson$Q1, data_virt_lesson$W1, method="kendall")
+
+#Bestimmung Korrelationkoeffizient mit Spearmann Methode
+cor.test(T1LernerfolgDU_data_virt_lesson_v3$Q1A1, T1LernerfolgDU_data_virt_lesson_v3$W1A1, method="spearman")
+
+
+
+
+#Explorative Betrachtung des Datensatzes
+#101  Lagesbeschreibung (tabellarisch) der Variablen anstatt Boxplots oder doch lieber Boxplots?
+#102  Median
+#102  Arithmetisches Mittel
+#103  Mean
+#104  kateorielle Einteilung der diskretisierten Werte durch Kontigenztafel-Parameter
+#105  Histogramm f?r jede Variable, wenn normalverteilt ansonsten geht das nichts
+#106  Q-Q Norm?
+
+#Bestimmung von Korrelationen
+#Q1=as.numeric_version(data_virt_lesson$Q1)
+#Q1A1=as.numeric_version(data_virt_lesson$Q1A1)
+#W1A1=as.numeric_version(data_virt_lesson$W1A1)
+cor.test(T1LernerfolgDU_data_virt_lesson_v3$Q1-Q18, T1LernerfolgDU_data_virt_lesson_v3$W1-W18, method="spearman")
+
+#Q01A0-Q18A0=as.numeric(T1LernerfolgDU_data_virt_lesson_v3$Q01A0-Q18A0)
+
+
+
+
+#LernerfolgVirtLesson <- chisq.test(table(switchedcolums_splitData_parted_v3_Lernerfolg_virt_lesson))
+
+
+#gitcommit
+##git remote add origin https://github.com/xxelementsxx/RStudio_analyzing_data.git
+##git branch -M main
+##git push -u origin main
